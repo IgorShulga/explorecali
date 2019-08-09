@@ -29,3 +29,10 @@ build/
 
 ### VS Code ###
 .vscode/
+/mvnw
+/mvnw.cmd
+Буде вилучено .mvn/
+Буде вилучено mvnw
+Буде вилучено mvnw.cmd
+Буде вилучено src/main/resources/static/
+Буде вилучено src/main/resources/templates/
