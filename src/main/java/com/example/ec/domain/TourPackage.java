@@ -4,11 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+/**
+ * A Classification of Tours.
+ * <p>
+ * Created by Mary Ellen Bowman
+ */
 @Entity
 public class TourPackage implements Serializable {
     @Id
     private String code;
+
     @Column
     private String name;
 
@@ -19,39 +26,13 @@ public class TourPackage implements Serializable {
         this.code = code;
         this.name = name;
     }
+
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TourPackage that = (TourPackage) o;
-
-        if (!code.equals(that.code)) return false;
-        return name != null ? name.equals(that.name) : that.name == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = code.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
     }
 
     @Override
@@ -60,5 +41,19 @@ public class TourPackage implements Serializable {
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TourPackage that = (TourPackage) o;
+        return Objects.equals(code, that.code) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name);
     }
 }

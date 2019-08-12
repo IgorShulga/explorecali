@@ -1,0 +1,37 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+GET http://localhost:8080/profile
+
+###
+
+GET http://localhost:8080/tourPackages
+
+###
+
+GET http://localhost:8080/tourPackages/search/findByName?name=Backpack%20Cal
+
+###
+
+GET http://localhost:8080/tours/search/findByTourPackageCode?code=CC&size=2&sort=title.asc
+
+###
+
+DELETE http://localhost:8080/packages/CC
+
+###
+
+POST http://localhost:8080/tours/1/ratings
+Content-Type: application/json
+
+{
+  "score": 1,
+  "comment": "That's all!",
+  "customerId": 5
+}
+
+###

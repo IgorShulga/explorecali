@@ -5,6 +5,11 @@ import com.example.ec.repo.TourPackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Tour Package Service
+ * <p>
+ * Created by Mary Ellen Bowman
+ */
 @Service
 public class TourPackageService {
     private TourPackageRepository tourPackageRepository;
@@ -15,14 +20,8 @@ public class TourPackageService {
     }
 
     public TourPackage createTourPackage(String code, String name) {
-
-        if (!tourPackageRepository.findById(code).isPresent()) {
-            TourPackage tourPackage = new TourPackage(code, name);
-            return tourPackageRepository.save(tourPackage);
-
-        } else {
-            return null;
-        }
+        return !tourPackageRepository.existsById(code) ?
+                tourPackageRepository.save(new TourPackage(code, name)) : null;
     }
 
     public Iterable<TourPackage> lookup() {
@@ -33,3 +32,4 @@ public class TourPackageService {
         return tourPackageRepository.count();
     }
 }
+

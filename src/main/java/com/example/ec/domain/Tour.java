@@ -2,38 +2,52 @@ package com.example.ec.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
+/**
+ * The Tour contains all attributes of an Explore California Tour.
+ * <p>
+ * Created by Mary Ellen Bowman
+ */
 @Entity
 public class Tour implements Serializable {
-
     @Id
     @GeneratedValue
     private Integer id;
+
     @Column
     private String title;
+
     @Column(length = 2000)
     private String description;
+
     @Column(length = 2000)
     private String blurb;
+
     @Column
     private Integer price;
+
     @Column
     private String duration;
+
     @Column(length = 2000)
     private String bullets;
+
     @Column
     private String keywords;
 
+
     @ManyToOne
     private TourPackage tourPackage;
+
     @Column
     private Difficulty difficulty;
+
     @Column
     private Region region;
 
-    public Tour(String title, String description, String blurb, Integer price, String duration,
-                String bullets, String keywords, TourPackage tourPackage, Difficulty difficulty,
-                Region region) {
+    public Tour(String title, String description, String blurb, Integer price, String duration, String bullets,
+                String keywords, TourPackage tourPackage, Difficulty difficulty, Region region) {
         this.title = title;
         this.description = description;
         this.blurb = blurb;
@@ -51,10 +65,6 @@ public class Tour implements Serializable {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -109,16 +119,16 @@ public class Tour implements Serializable {
         return keywords;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
-
     public TourPackage getTourPackage() {
         return tourPackage;
     }
 
     public void setTourPackage(TourPackage tourPackage) {
         this.tourPackage = tourPackage;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
     }
 
     public Difficulty getDifficulty() {
@@ -138,22 +148,6 @@ public class Tour implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Tour tour = (Tour) o;
-
-        return id.equals(tour.id);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "Tour{" +
                 "id=" + id +
@@ -168,5 +162,28 @@ public class Tour implements Serializable {
                 ", difficulty=" + difficulty +
                 ", region=" + region +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tour tour = (Tour) o;
+        return Objects.equals(id, tour.id) &&
+                Objects.equals(title, tour.title) &&
+                Objects.equals(description, tour.description) &&
+                Objects.equals(blurb, tour.blurb) &&
+                Objects.equals(price, tour.price) &&
+                Objects.equals(duration, tour.duration) &&
+                Objects.equals(bullets, tour.bullets) &&
+                Objects.equals(keywords, tour.keywords) &&
+                Objects.equals(tourPackage, tour.tourPackage) &&
+                difficulty == tour.difficulty &&
+                region == tour.region;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, blurb, price, duration, bullets, keywords, tourPackage, difficulty, region);
     }
 }

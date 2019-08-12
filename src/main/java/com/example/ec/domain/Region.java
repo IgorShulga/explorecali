@@ -1,11 +1,12 @@
 package com.example.ec.domain;
 
+/**
+ * Enumeration of the region of California.
+ * <p>
+ * Created by Mary Ellen Bowman
+ */
 public enum Region {
-    Central_Coast("Central Coast"),
-    Southern_California("Southern California"),
-    Northern_California("Northern California"),
-    Varies("Varies");
-
+    Central_Coast("Central Coast"), Southern_California("Southern California"), Northern_California("Northern California"), Varies("Varies");
     private String label;
 
     private Region(String label) {
